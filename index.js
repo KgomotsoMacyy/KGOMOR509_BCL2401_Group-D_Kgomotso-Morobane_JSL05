@@ -11,6 +11,11 @@ const songs = [
     { title: "Come and Get Your Love", artist: "Redbone", genre: "Rock" },
     { title: "I'm Not in Love", artist: "10cc", genre: "Pop" },
     { title: "Fooled Around and Fell in Love", artist: "Elvin Bishop", genre: "Rock" },
+    { title: "Paris", artist: "The Chainsmokers", genre: "Pop"},
+    { title: "Closer", artist: "The Chainsmokers & Halsey", genre: "Pop"},
+    { title: "Evergreen", artist: "Omar Apollo", genre: "Pop"},
+    { title: "Middle", artist: "Dj Snake & Bipolar Sunshine"},
+    { title: "I Lose Control", artist: "Teddy Swims", genre: "Pop"}
     // Feel free to add even more songs
 ];
 
