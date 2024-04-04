@@ -14,7 +14,7 @@ const songs = [
     { title: "Paris", artist: "The Chainsmokers", genre: "Pop"},
     { title: "Closer", artist: "The Chainsmokers & Halsey", genre: "Pop"},
     { title: "Evergreen", artist: "Omar Apollo", genre: "Pop"},
-    { title: "Middle", artist: "Dj Snake & Bipolar Sunshine"},
+    { title: "Middle", artist: "Dj Snake & Bipolar Sunshine", genre: "Pop"},
     { title: "I Lose Control", artist: "Teddy Swims", genre: "Pop"}
     // Feel free to add even more songs
 ];
@@ -24,19 +24,45 @@ const songs = [
 const guardians = {
     "Star-Lord": "Rock",
     "Gamora": "Pop",
+    "Drax": "Pop",
+    "Rocket": "Rock",
+    "Groot": "Pop"
     // Add preferences for Drax, Rocket, and Groot
-    "Drax": "Rock",
-    "Rocket": "Pop",
-    "Groot": "Rock"
 };
 
 // Function to generate playlist based on preferred genre
 function generatePlaylist(guardians, songs) {
-    // Use the map() function to create playlists for each Guardian
-    // Your code here
+    return Object.entries(guardians).map(([guardian, preferredGenre]) => {
+    let playlist = songs.filter(track => track.genre === preferredGenre);
+         
+    return { guardian, playlist};
+    });
 }
 
-// Call generatePlaylist and display the playlists for each Guardian
-generatePlaylist(guardians, songs);
+let playlists = generatePlaylist(guardians, songs);
 
+const playlistsDiv = document.getElementById('playlists'); 
 
+playlists.forEach(({ guardian, playlist}) => {
+    const individualPlaylistDiv = document.createElement('div');
+    individualPlaylistDiv.classList.add('playlist');
+
+    const heading = document.createElement('h4');
+    heading.textContent = `${guardian}'s Playlist`;
+    individualPlaylistDiv.appendChild(heading);
+
+    playlist.forEach(track => {
+        const songParagraph = document.createElement('p');
+        songParagraph.classList.add('song');
+
+        const songTitleSpan = document.createElement('span');
+        songTitleSpan.classList.add('song-title');
+        songTitleSpan.textContent = track.title;
+        songParagraph.appendChild(songTitleSpan);
+        
+        songParagraph.innerHTML += ` by ${track.artist}`;
+        individualPlaylistDiv.appendChild(songParagraph);
+    });
+
+    playlistsDiv.appendChild(individualPlaylistDiv);
+})
